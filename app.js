@@ -58,9 +58,7 @@ app.use('/', jwtVerify.checkToken ,  searchRoute)
 app.use('/', logoutRoute);
 app.use('/', commentRoute);
 
-
-
-//Listen to the port 3000
+//Listen to the port 3306
 app.listen(3306, () => {
     console.log("listening to 3000 !");
 })
