@@ -1,0 +1,108 @@
+<link rel="stylesheet" href="/CSS/navbar.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand" href="/"><i class="bi bi-egg"></i> Community</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <%if(data.user.auth){%>
+          <a class="nav-link" href="/posts/1">Posts</a>
+          <%}else{%>
+            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Posts</a>
+          <%}%>
+        </li>
+        <li class="nav-item">
+          <%if(data.user.auth){%>
+            <a class="nav-link" href="/submit">Submit Post</a>
+            <%}else{%>
+              <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Submit Post</a>
+            <%}%>
+        </li>
+        <li class="nav-item" style="margin-top:8px">
+          <i class="bi bi-search" aria-hidden="true">
+            <div class="togglesearch">
+              <form action="/search" method="POST">
+                <input id="SearchInput" type='text' name="SearchInput" placeholder="Search for post. . . ">
+                <button id="SearchBtn" type='submit' name="Searched">Submit</button>
+              </form>
+            </div>
+          </i>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ms-auto">
+        
+        <%if(data.user.auth){%>
+        <li class="nav-item"></li>
+          <row>
+            <a class="nav-link ps-5" style="padding-right: 0px; padding-bottom: 0px; margin-bottom: 0px;" href="https://stg-account.samsung.com/accounts/v1/STWS/signOutGate?client_id=3694457r8f&state=CUSTOM_TOKEN&signOutURL=http://localhost:3000/logout/complete">logout</a>
+            <small class="pe-2" id="welcome_user" style="font-size:smaller; padding-top: 0px; padding-left: 0px;">Welcome <%=data.user.profile.name %> !</small>
+          </row>
+          
+        <li class="nav-item"></li>
+        
+        
+        <%}else{%>
+          
+            <li class="nav-item">
+              <a class="nav-link"
+                href="https://stg-account.samsung.com/accounts/v1/STWS/signInGate?response_type=code&locale=en&countryCode=US&client_id=3694457r8f&redirect_uri=http://localhost:3000/sa/signin/callback&state=CUSTOM_TOKEN&goBackURL=http://localhost:3000">log In</a>
+            </li>        
+        <%}%>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Not logged in</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Please login to continue.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">
+        <a href="https://stg-account.samsung.com/accounts/v1/STWS/signInGate?response_type=code&locale=en&countryCode=US&client_id=3694457r8f&redirect_uri=http://localhost:3000/sa/signin/callback&state=CUSTOM_TOKEN&goBackURL=http://localhost:3000" id="loginText">log In</a>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+ 
+ $(".bi-search").click(function() {
+    
+    $(this).find(".togglesearch").toggle();
+    
+  });
+
+  $(".bi-search #SearchInput").click(function(e){
+    e.stopPropagation();
+  })
+  $(".bi-search #SearchBtn").click(function(e){
+    e.stopPropagation();
+    var searched = $('#SearchInput').val();
+    console.log(searched);
+
+  })
+
+</script>

@@ -1,0 +1,9 @@
+<% layout('layouts/Boilerplate') %>
+<h1>Searched !</h1>
+
+<%for(let i=0; i<data.matchedPosts.length; i++){%>
+    <p>
+      <%-data.matchedPosts[i].post%>
+    </p>
+<%}%>
+

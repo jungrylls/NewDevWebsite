@@ -1,0 +1,19 @@
+.hidden {
+    display: none;
+}
+#postings{
+    padding-bottom: 50px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.theContent{
+    color: black;
+}
+
+#theEditor{
+    padding-bottom: 60px;
+}

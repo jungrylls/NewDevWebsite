@@ -1,0 +1,10 @@
+<% layout('layouts/Boilerplate') %>
+<form class="add-form" action="/posts/<%=data.rows[0].id%>?_method=PATCH" method="POST">
+    <label>Edit Text</label>
+    <p></p>
+    <textarea id="edit_content" name="edit_content"  rows="4" cols="50">
+        <%-data.rows[0].post%>
+    </textarea>
+    <button>Submit</button>
+
+</form>

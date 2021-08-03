@@ -1,0 +1,26 @@
+<% layout('layouts/Boilerplate') %>
+
+<div class="container" id="postings">
+    <table>
+        <%for(let i=0; i<data.rows.length; i++){%>
+            <tr>
+                <td><a id="each_post" href="/post/<%=data.rows[i].id%>"><%=data.rows[i].title%></a> -  <sub>(<%=data.rows[i].user_name%>)</sub></td>
+            </tr>
+        <%}%>
+    </table>
+</div>
+
+<%var x = data.numb[0].count%>
+<%var page = 1;%>
+
+<div class="container">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <% for(let i=0; i<x; i+= 5){%>
+                <li class="page-item"><a class="page-link" href="/posts/<%=page%>"><%=page%></a></li>
+                <%page++%>
+            <%}%>
+        </ul>
+      </nav>
+</div>
+

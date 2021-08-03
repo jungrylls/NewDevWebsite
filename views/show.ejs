@@ -1,0 +1,288 @@
+<% layout('layouts/Boilerplate') %>
+    <link rel="stylesheet" href="/CSS/show.css" />
+    <script src="//cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
+    <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+<div class="container" id="postings">
+    <table>
+            <tr>
+                <td>
+                    <h3 class="theContent"><%=data.userPost[0].title%></h3> 
+                    <p class="theContent"><%-data.userPost[0].post%></p>                   
+                    <sub><%=data.userPost[0].user_name%>  <%=data.userPost[0].date%></sub>
+                    <%if(data.postOwner == true){%>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <button>
+                                        <a href="/posts/<%=data.userPost[0].id%>/edit">Edit</a>
+                                    </button>
+                                </div>
+                                <div class="col">
+                                    <form method="POST" action="/posts/<%=data.userPost[0].id%>?_method=DELETE">
+                                        <button onclick="return confirm('Are you sure you want to delete this item?');">delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    <%}%>  
+                </td>
+            </tr>
+        
+    </table>
+   
+    
+</div>
+<div class="container" id="theEditor">
+    <h4>Comment</h4>
+    <div id="editor" class="subject" required style="height:100px" name="content"></div>
+    <form method="post" id="comment_submit_form">
+        <input contenteditable="true" type="hidden" style="display: none;" id="hiddenUserInput" name="user_comment">
+        <p type="hidden" style="display: none;" id="post_id" name="post_id"><%=data.userPost[0].id%></p>
+        <input contenteditable="true" type="hidden" style="display: none;" id="hidden_post_id" name="hidden_post_id">
+        <input type="submit" id="comment-btn" disabled="true" value="Submit">
+    </form>
+</div>
+
+
+<div class="container">
+    <ul id="comm_list" class="list-unstyled">
+      <%for(let i = 0; i<data.matchingComments.length; i++){%>
+        <li id="ridge">
+            <%=data.matchingComments[i].user_name %> <%=data.matchingComments[i].date%> </br>
+            <span class="comm">
+            <%-data.matchingComments[i].user_comment%>
+            </span>
+            <form method="patch" class="comm_edit_form">
+                <input class="edit hidden" type="text" />
+                <p class="hidden hiddenCommId"><%=data.matchingComments[i].comment_id %></p>
+                <input class="comm_id hidden" type="text" />
+                <input type="submit" class="comm_edit_form_submit hidden" value="Submit">
+            </form>
+            
+            <%if(data.matchingComments[i].user_email === data.user.profile.email){%>
+            
+                <button class="comm_edit" href="#">Edit</button>
+                <button class="comm_delete" href="#">Delete</button>
+            <%}%> 
+            <hr>
+        </li>
+      <%}%>
+    </ul>
+</div>
+
+
+
+<%# This is a comment ! %>
+
+
+<script>
+    //The Quill text editor.
+    var toolbarOption =[
+      ['bold', 'italic', 'underline', 'strike'],
+      ['blockquote', 'code-block'],
+      [{'header': 1}, {'header':2}],
+      [{'list':'ordered'}, {'list':'bullet'}],
+      [{'script':'sub'}, {'script': 'super'}]
+    ]
+    var quill = new Quill('#editor', {
+      modules: {
+        toolbar: toolbarOption
+      },
+      placeholder: 'Leave a comment',
+      theme: 'snow'
+    })
+    
+    //Add Quill text editor event handler.
+    quill.on('text-change', ()=>{
+      var text = quill.root.innerHTML;
+      document.getElementById('hiddenUserInput').value = text;
+
+      if(quill.getText().length === 1){
+        document.querySelector('#comment-btn').disabled = true;
+         }else{
+             console.log(quill.getText().length);
+        document.querySelector('#comment-btn').disabled = false;
+    }
+  
+    })
+  </script>
+
+
+<script>
+//Script to handle client side new comments.
+$("#comment_submit_form").submit(function(e) {
+    e.preventDefault();
+    var userComment = $("#hiddenUserInput").val();
+    var text = document.getElementById('post_id').textContent;
+    document.getElementById('hidden_post_id').value = text;
+    var postId = $("#hidden_post_id").val();
+
+    $.ajax({
+        url: "http://localhost:3000/comments",
+        type: "POST",
+        data: {
+            userComment,
+            postId
+        },
+        success: function(data){
+           var comment_Id = data.rows.insertId;
+           console.log(comment_Id);
+           quill.root.innerHTML = '';
+            getAJAXComment(comment_Id)
+        }
+    })
+})
+
+
+
+function getAJAXComment(commentId){
+    console.log("received " + commentId );
+    $.ajax({
+        url: "http://localhost:3000/comments",
+        type: "GET",
+        data: {
+            comment_Id: commentId
+        },
+        success: function(data){
+           
+            var comm_author = data.rows[0].user_name;
+            var date = data.rows[0].date;
+            var user_comm = data.rows[0].user_comment;
+            var comm_id = data.rows[0].comment_id;
+            $("#comm_list").append(
+                `<li>
+                    ${comm_author} ${date} </br><span class="comm">${user_comm}</span>
+                    <form method="patch" class="comm_edit_form">
+                        <input class="edit hidden" type="text"/>
+                        <p class="hidden hiddenCommId">${comm_id}</p>
+                        <input class="comm_id hidden" type="text"/>
+                        <input type="submit" class="comm_edit_form_submit hidden" value="Submit">
+                    </form>
+                    <button class="comm_edit" href="#">Edit</button>
+                    <button class="comm_delete" href="#">Delete</button>
+                    <hr>
+                </li>`);
+        }
+    })
+}
+
+$('document').ready(function(){
+    $('.comm_edit_form').submit(function(e){
+        e.preventDefault();
+
+        var newComm = $('.edit').val();
+        var commId = $('.hiddenCommId').text();
+        console.log(newComm + commId);
+
+        $.ajax({
+            url: "http://localhost:3000/comments/edit?_method=PATCH",
+            type: "PATCH",
+            data: {
+                newComm,
+                commId
+            },
+            success: function(data){
+               // getAJAXEditedComment(commId);
+            }
+        })
+    })
+})
+
+
+    function getAJAXEditedComment(commentId){
+    console.log("received " + commentId );
+    $.ajax({
+        url: "http://localhost:3000/comments",
+        type: "GET",
+        data: {
+            comment_Id: commentId
+        },
+        success: function(data){
+            console.log(data);
+            var comm_author = data.rows[0].user_name;
+            var date = data.rows[0].date;
+            var user_comm = data.rows[0].user_comment;
+            var comm_id = data.rows[0].comment_id;
+            
+        }
+    })
+}
+    var test = $('.comm_edit')
+    console.log(test)
+
+ 
+   
+</script>
+
+<script>
+//Script to handle client side edit comments.
+$('document').ready(function(){
+    $("#comm_list").on("click", "li .comm_edit", function () {
+        $(this).addClass('hidden'); 
+        $(this).next().addClass('hidden');
+        //Make hidden text input visible.
+        $(this).prev().children(':nth-child(1)').removeClass('hidden');
+        //Hidden input starting value set.
+        var text = $(this).prev().prev().text();
+        $(this).prev().children(':nth-child(1)').val(text)
+
+        //Make hidden submit button visible.
+        $(this).prev().children(':nth-child(4)').removeClass('hidden');
+        
+        $(this).prev().prev().addClass('hidden');
+
+        //Attach submit button event listener
+        $(this).prev().submit(function(e) {
+            e.preventDefault();
+            
+            var txt = $(this).children(':nth-child(2)').text();
+            $(this).children(':nth-child(3)').val(txt)
+            
+            var theText = $(this).children(':nth-child(1)').val();
+
+            var ref = $(this);
+          
+            $.ajax({
+                url: "http://localhost:3000/comments/edit?_method=PATCH",
+                type: "PATCH",
+                data: {
+                    commId : txt,
+                    newComm :  $(this).children(':nth-child(1)').val()
+                },
+                success: function(data){
+                   ref.children(':nth-child(1)').addClass('hidden');
+                   ref.children(':nth-child(4)').addClass('hidden');
+                   var tempText = ref.children(':nth-child(1)').val();
+                   console.log(tempText);
+                   ref.prev().text(tempText)
+                   ref.prev().removeClass('hidden');
+                   ref.next().removeClass('hidden');
+                   ref.next().next().removeClass('hidden');
+                }
+            })
+        })
+    })   
+
+    $("#comm_list").on("click", "li .comm_delete", function () {
+        $(this).parent().remove();
+        var id = $(this).prev().prev().children(':nth-child(2)').text();
+        $.ajax({
+            url: "http://localhost:3000/comments/delete?_method=DELETE",
+            type: "DELETE",
+            data: {
+                id: id
+            },
+            success: function(data){
+             
+            }
+        })
+    })
+})
+
+</script>

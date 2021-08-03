@@ -1,0 +1,32 @@
+#welcome_user{
+    margin-bottom: 0;
+    padding: 8px;
+}
+
+#staySignedInCheckBox {
+    padding: 8px;
+}
+
+.defaultCheck1{
+    width: auto;
+    margin:auto;
+    font-size: x-small;
+}
+
+.box {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#loginText{
+    color: white;
+    text-decoration-line: none;
+}
+
+.togglesearch{
+  
+    display: none;
+  }
+   
+
+   
