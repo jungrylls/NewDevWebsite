@@ -5,6 +5,7 @@ var pool  = mysql.createPool({
   user            : 'root',
   password        : 'password',
   database        : 'posts',
+  port: '3306',
   multipleStatements: true
 });
 
