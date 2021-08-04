@@ -2,7 +2,7 @@
 const express = require('express');
 const { dirname } = require('path');
 const app = express();
-const hostName = '54.202.165.130';
+const hostName = '172.31.19.227';
 
 //Jquery - dom
 var jsdom = require("jsdom");
