@@ -6,7 +6,7 @@ var pool  = mysql.createPool({
     timeout         : 60 * 60 * 1000,
   host            : 'localhost',
   user            : 'root',
-  password        : 'password',
+  password        : 'acAC12!@',
   database        : 'posts',
   port: '3306',
   multipleStatements: true
