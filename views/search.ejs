@@ -1,18 +1,10 @@
 <% layout('layouts/boilerplate') %>
-<h1>Searched !</h1>
-
-<%for(let i=0; i<data.matchedPosts.length; i++){%>
-    <p>
-      <%-data.matchedPosts[i].post%>
-    </p>
-<%}%>
-
 
 <div class="container" id="postings">
   <table>
       <%for(let i=0; i<data.matchedPosts.length; i++){%>
           <tr>
-              <td><a id="each_post" href="/posts/<%=data.matchedPosts[i].id%>"><%=data.matchedPosts[i].title%></a> -  <sub>(<%=data.matchedPosts[i].user_name%>)</sub></td>
+              <td><a id="each_post" href="/post/<%=data.matchedPosts[i].id%>"><%=data.matchedPosts[i].title%></a> -  <sub>(<%=data.matchedPosts[i].user_name%>)</sub></td>
           </tr>
       <%}%>
   </table>
