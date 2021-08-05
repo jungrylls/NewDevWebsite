@@ -10,7 +10,7 @@ router.get('/search/:page', (req, res) => {                                     
     //Get offset value for mySQL pagination query.                                                  //
     const offSet = (page * 5) - 5;     
 
-    console.log(req.body)    
+    console.log(req.query)    
     const SearchInput = req.query.SearchInput;                                                                  //                                             
     console.log(SearchInput)                                                        
 
