@@ -124,7 +124,7 @@ $("#comment_submit_form").submit(function(e) {
     var postId = $("#hidden_post_id").val();
 
     $.ajax({
-        url: "http://localhost:3000/comments",
+        url: "http://54.202.165.130/comments",
         type: "POST",
         data: {
             userComment,
@@ -144,7 +144,7 @@ $("#comment_submit_form").submit(function(e) {
 function getAJAXComment(commentId){
     console.log("received " + commentId );
     $.ajax({
-        url: "http://localhost:3000/comments",
+        url: "http://54.202.165.130/comments",
         type: "GET",
         data: {
             comment_Id: commentId
@@ -181,7 +181,7 @@ $('document').ready(function(){
         console.log(newComm + commId);
 
         $.ajax({
-            url: "http://localhost:3000/comments/edit?_method=PATCH",
+            url: "http://54.202.165.130/comments/edit?_method=PATCH",
             type: "PATCH",
             data: {
                 newComm,
@@ -198,7 +198,7 @@ $('document').ready(function(){
     function getAJAXEditedComment(commentId){
     console.log("received " + commentId );
     $.ajax({
-        url: "http://localhost:3000/comments",
+        url: "http://54.202.165.130/comments",
         type: "GET",
         data: {
             comment_Id: commentId
@@ -249,7 +249,7 @@ $('document').ready(function(){
             var ref = $(this);
           
             $.ajax({
-                url: "http://localhost:3000/comments/edit?_method=PATCH",
+                url: "http://54.202.165.130/comments/edit?_method=PATCH",
                 type: "PATCH",
                 data: {
                     commId : txt,
@@ -273,7 +273,7 @@ $('document').ready(function(){
         $(this).parent().remove();
         var id = $(this).prev().prev().children(':nth-child(2)').text();
         $.ajax({
-            url: "http://localhost:3000/comments/delete?_method=DELETE",
+            url: "http://54.202.165.130/comments/delete?_method=DELETE",
             type: "DELETE",
             data: {
                 id: id
