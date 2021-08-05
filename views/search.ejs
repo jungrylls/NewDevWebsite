@@ -7,3 +7,27 @@
     </p>
 <%}%>
 
+
+<div class="container" id="postings">
+  <table>
+      <%for(let i=0; i<data.matchedPosts.length; i++){%>
+          <tr>
+              <td><a id="each_post" href="/posts/<%=data.matchedPosts[i].id%>"><%=data.matchedPosts[i].title%></a> -  <sub>(<%=data.matchedPosts[i].user_name%>)</sub></td>
+          </tr>
+      <%}%>
+  </table>
+</div>
+
+<%var x = data.numb[0].count%>
+<%var page = 1;%>
+
+<div class="container">
+  <nav aria-label="Page navigation example">
+      <ul class="pagination">
+          <% for(let i=0; i<x; i+= 5){%>
+              <li class="page-item"><a class="page-link" href="/search/<%=page%>"><%=page%></a></li>
+              <%page++%>
+          <%}%>
+      </ul>
+    </nav>
+</div>
