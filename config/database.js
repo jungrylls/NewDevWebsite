@@ -4,9 +4,9 @@ var pool  = mysql.createPool({
     connectTimeout  : 60 * 60 * 1000,
     acquireTimeout  : 60 * 60 * 1000,
     timeout         : 60 * 60 * 1000,
-  host            : process.env.HOST,
-  user            : process.env.USER,
-  password        : 'acAC12!@',
+  host            : 'localhost',
+  user            : 'root',
+  password        : 'password',
   database        : 'posts',
   port: '3306',
   multipleStatements: true
