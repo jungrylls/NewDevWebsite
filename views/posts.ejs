@@ -22,7 +22,7 @@
 
 <div class="container">
     <nav aria-label="Page navigation example">
-        <ul class="pagination">
+        <ul id="paginationLi" class="pagination">
             <% for(let i=0; i<x; i+= 5){%>
                 <li class="page-item"><a class="page-link" href="/posts/<%=page%>"><%=page%></a></li>
                 <%page++%>
@@ -30,4 +30,16 @@
         </ul>
       </nav>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
 
+    //Script to change the color of an active pagination button.
+    var listPagination = $("#paginationLi li");
+    for(let li of listPagination){
+        console.log($(li).text());
+        if($(li).text() == data.page){
+            $(li).addClass('disabled');
+        }
+    }
+
+</script>

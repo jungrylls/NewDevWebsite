@@ -8,24 +8,25 @@ require('dotenv').config();
 //XML parser
 const parseXML = require("xml2js").parseString;
 
-
-
-
+//Route to handle user SamSung login.
 router.get('/sa/signin/callback', (req, response) => {
 
-    //console.dir(req);
-    //console.dir(res)
-    //console.log(req.query)
-
+    //Access token initially set undefined.
     var access_token = undefined;
+
+    //User profile initially set undefined.
     var profile = undefined;
-    
+
+    //After initial login, "auth_server_url", "code", and "api_server_url" given.
     const auth_server_url = req.query.auth_server_url;
-    //console.log(auth_server_url);
     const code = req.query.code;
+    const api_server_url = req.query.api_server_url;
+
+    //Client ID and secrete was given from the tecace website.
     const client_id = process.env.CLIENTID;
     const client_secret = process.env.CLIENTSECRET;
-    const api_server_url = req.query.api_server_url;
+
+    //Config object to be passed to the 
     var config = {
         url: `https://${auth_server_url}/auth/oauth2/token`,
         method: 'post',

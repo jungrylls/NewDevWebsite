@@ -40,7 +40,8 @@ router.get('/posts/:page', (req, res) => {                                      
                 const data = {                                                                      //
                     rows,
                     numb,                                                                           //
-                    user
+                    user,
+                    page
                 }                                                                                   //
                 //Release the pool connection.
                 conn.release();                                                                     //
