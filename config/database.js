@@ -14,6 +14,7 @@ var pool  = mysql.createPool({
 
 pool.getConnection((err, connection) => {
     if(err){
+        console.log("hello there !")
         console.log(err)
     }else{
         console.log("connected to the pool !")
