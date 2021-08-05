@@ -16,6 +16,7 @@ var pool  = mysql.createPool({
 
 pool.getConnection((err, connection) => {
     if(err){
+        console.log("The user from the .env file is " + process.env.USER)
         console.log("The password from the .env file is " + process.env.PASSWORD)
         console.log(err)
     }else{
