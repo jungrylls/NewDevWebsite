@@ -6,10 +6,11 @@
 
 label{
     text-align: center;
-    font-size: larger;
+    font-weight: bold;
+    font-size: large;
 }
 
 textarea{
-    width: 100%;
+    width: 80%;
     height: 600px;
 }
