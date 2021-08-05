@@ -1,7 +1,7 @@
 let jwt = require('jsonwebtoken');
 const cookieParser = require("cookie-parser");
-
-
+//.env import
+require('dotenv').config();
 
 let checkToken = (req, res, next) => {
     const token = req.cookies.jwttoken;

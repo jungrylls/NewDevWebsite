@@ -3,7 +3,8 @@ const router = express.Router();
 const jwt = require('jsonwebtoken')
 //Import axios library to fetch SA login
 const axios = require('axios').default;
-
+//.env import
+require('dotenv').config();
 //XML parser
 const parseXML = require("xml2js").parseString;
 
