@@ -7,7 +7,7 @@ var pool  = mysql.createPool({
     acquireTimeout  : 60 * 60 * 1000,
     timeout         : 60 * 60 * 1000,
   host            : process.env.HOST,
-  user            : process.env.USER,
+  user            : process.env.THE_USER,
   password        : process.env.PASSWORD,
   database        : process.env.DATABASE,
   port: '3306',
