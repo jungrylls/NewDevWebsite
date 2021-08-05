@@ -6,15 +6,14 @@ var pool  = mysql.createPool({
     timeout         : 60 * 60 * 1000,
   host            : process.env.HOST,
   user            : process.env.USER,
-  password        : process.env.PASSWORD,
-  database        : process.env.DATABASE,
+  password        : 'acAC12!@',
+  database        : 'posts',
   port: '3306',
   multipleStatements: true
 });
 
 pool.getConnection((err, connection) => {
     if(err){
-        console.log(process.env.PASSWORD)
         console.log(err)
     }else{
         console.log("connected to the pool !")
