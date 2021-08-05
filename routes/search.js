@@ -11,7 +11,7 @@ router.get('/search/:page', (req, res) => {                                     
     const offSet = (page * 5) - 5;     
 
     console.log(req.body)    
-    const {SearchInput} = req.query;                                                                  //                                             
+    const SearchInput = req.query.SearchInput;                                                                  //                                             
     console.log(SearchInput)                                                        
 
     pool.getConnection((err, conn)=> {
