@@ -1,6 +1,9 @@
 <% layout('layouts/boilerplate') %>
 
 <div class="container" id="postings">
+
+  <h2>Search result for key work "<b><%=data.SearchInput%></b>"</h2>
+
   <table>
       <%for(let i=0; i<data.matchedPosts.length; i++){%>
           <tr>
