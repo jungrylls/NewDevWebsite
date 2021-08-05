@@ -45,7 +45,11 @@
     ['blockquote', 'code-block'],
     [{'header': 1}, {'header':2}],
     [{'list':'ordered'}, {'list':'bullet'}],
-    [{'script':'sub'}, {'script': 'super'}]
+    [{'script':'sub'}, {'script': 'super'}],
+    [ 'link', 'image', 'video', 'formula' ],          // add's image support
+    [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+    [{ 'font': [] }],
+    [{ 'align': [] }]
   ]
   var quill = new Quill('#editor', {
     modules: {
