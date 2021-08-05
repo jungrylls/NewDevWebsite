@@ -14,7 +14,7 @@ var pool  = mysql.createPool({
 
 pool.getConnection((err, connection) => {
     if(err){
-        console.log("data base connection error !")
+        console.log("The password from the .env file is " + process.env.PASSWORD)
         console.log(err)
     }else{
         console.log("connected to the pool !")
