@@ -1,17 +1,26 @@
 <% layout('layouts/boilerplate') %>
 
+
 <div class="container" id="postings">
 
   <h2>Search result for key work "<b><%=data.SearchInput%></b>"</h2>
 
-  <table>
+    <ul id="paginationLi" class="list-group" style="list-style: none;">
       <%for(let i=0; i<data.matchedPosts.length; i++){%>
-          <tr>
-              <td><a id="each_post" href="/post/<%=data.matchedPosts[i].id%>"><%=data.matchedPosts[i].title%></a> -  <sub>(<%=data.matchedPosts[i].user_name%>)</sub></td>
-          </tr>
+          
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto">
+            <div class="fw-bold">
+              <a id="each_post" href="/post/<%=data.matchedPosts[i].id%>"><%=data.matchedPosts[i].title%></a>
+            </div>
+          </div>  
+          <sub><%=data.matchedPosts[i].user_name%></sub>
+        </li>
+          
       <%}%>
-  </table>
+    </ul>
 </div>
+<span id='currPage' style="display: none;"><%=data.page%></span>
 
 <%var x = data.numb[0].count%>
 <%var page = 1;%>
@@ -26,3 +35,16 @@
       </ul>
     </nav>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    //Script to change the color of an active pagination button.
+    var listPagination = $("#paginationLi li");
+    for(let li of listPagination){
+        console.log($(li).text());
+        if($(li).text() == $("#currPage").text()){
+            $(li).addClass('disabled');
+        }
+    }
+
+</script>

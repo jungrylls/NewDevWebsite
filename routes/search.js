@@ -48,7 +48,8 @@ router.get('/search/:page', (req, res) => {                                     
                      SearchInput,
                      matchedPosts,
                      user,
-                     numb
+                     numb,
+                     page
                  }
                 console.log(data)
                  res.render('search', {data:data})
@@ -106,7 +107,8 @@ router.get('/search/:page/:searched', (req, res) => {                           
                      SearchInput,
                      matchedPosts,
                      user,
-                     numb
+                     numb,
+                     page
                  }
                 console.log(data)
                  res.render('search', {data:data})
