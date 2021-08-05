@@ -1,7 +1,10 @@
+//.env import
+require('dotenv').config();
 //Import and Create an express application.
 const express = require('express');
 const { dirname } = require('path');
 const app = express();
+
 
 //Jquery - dom
 var jsdom = require("jsdom");
@@ -44,8 +47,6 @@ const commentRoute = require('./routes/comments');
 //const mysqlConnection = require('./config/database');
 app.use(express.static(path.join(__dirname, 'public')));
 
-//.env import
-require('dotenv').config();
 
 const cookieParser = require("cookie-parser");
 app.use(cookieParser());
