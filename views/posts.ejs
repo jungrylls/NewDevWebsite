@@ -16,6 +16,7 @@
         <%}%>
     </ul>
 </div>
+<span id='currPage' style="display: none;"><%=data.page%></span>
 
 <%var x = data.numb[0].count%>
 <%var page = 1;%>
@@ -37,7 +38,7 @@
     var listPagination = $("#paginationLi li");
     for(let li of listPagination){
         console.log($(li).text());
-        if($(li).text() == data.page){
+        if($(li).text() == $("#currPage").text()){
             $(li).addClass('disabled');
         }
     }
