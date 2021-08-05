@@ -2,7 +2,6 @@
 const express = require('express');
 const { dirname } = require('path');
 const app = express();
-const hostName = '172.31.19.227';
 
 //Jquery - dom
 var jsdom = require("jsdom");
@@ -60,6 +59,6 @@ app.use('/', logoutRoute);
 app.use('/', commentRoute);
 
 //Listen to the port 3306
-app.listen(3000, hostName, () => {
+app.listen(3000, () => {
     console.log("listening to 3000 !");
 })
