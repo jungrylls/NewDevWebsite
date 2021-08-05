@@ -3,7 +3,7 @@ const router = express();
 const pool = require('../config/database');
 
 
-router.post('/search/:page', (req, res) => {                                                          //
+router.get('/search/:page', (req, res) => {                                                          //
                                                                                                     
     //Get pagination number.                                                                        //
     const page = req.params.page;                                                                   
