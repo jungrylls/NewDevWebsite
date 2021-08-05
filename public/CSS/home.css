@@ -9,6 +9,7 @@
 
   body{
     background-repeat: no-repeat;
+    background-size: cover;
     background-position: center;
     background-image: url(https://images.pexels.com/photos/313782/pexels-photo-313782.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
   }
