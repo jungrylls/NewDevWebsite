@@ -1,7 +1,7 @@
 <% layout('layouts/boilerplate') %>
 
 <div class="container" id="postings">
-    <ol class="list-group list-group-numbered">
+    <ul class="list-group list-group-numbered" style="list-style: none;">
         <%for(let i=0; i<data.rows.length; i++){%>
             
              <li class="list-group-item d-flex justify-content-between align-items-start">
@@ -14,7 +14,7 @@
             </li>
             
         <%}%>
-    </ol>
+    </ul>
 </div>
 
 <%var x = data.numb[0].count%>
