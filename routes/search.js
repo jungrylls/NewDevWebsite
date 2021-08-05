@@ -20,7 +20,7 @@ router.post('/search/:page', (req, res) => {                                    
             throw err;
         }      
     var insert = ['user_post', 'title'];                                                                 
-    var sqlQuery = `SELECT * FROM ?? LIMIT ${offSet}, 5 WHERE ?? LIKE '%${SearchInput}%'`; 
+    var sqlQuery = `SELECT * FROM ?? WHERE ?? LIKE '%${SearchInput}%' LIMIT ${offSet}, 5`; 
 
     var insert2 = ['user_post', 'title'];
     var sqlQuery2 = `SELECT count(*) as count FROM ?? WHERE ?? LIKE '%${SearchInput}%'`;
