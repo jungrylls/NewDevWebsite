@@ -22,8 +22,8 @@ router.get('/sa/signin/callback', (req, response) => {
     const auth_server_url = req.query.auth_server_url;
     //console.log(auth_server_url);
     const code = req.query.code;
-    const client_id = "3694457r8f";
-    const client_secret = "ECF8F31E32F6DA9DC17C7704A1A4DE47";
+    const client_id = process.env.CLIENTID;
+    const client_secret = process.env.CLIENTSECRET;
     const api_server_url = req.query.api_server_url;
     var config = {
         url: `https://${auth_server_url}/auth/oauth2/token`,
@@ -49,7 +49,7 @@ router.get('/sa/signin/callback', (req, response) => {
            url: `https://${api_server_url}/v2/profile/user/user/${userId}`,
            headers: {
             'Authorization': 'Bearer ' + access_token, //Access token provided from above response
-            'x-osp-appId': client_id, //"3694457r8f"
+            'x-osp-appId': client_id, 
             'x-osp-userId': userId //userId provided from above response
             }
        }

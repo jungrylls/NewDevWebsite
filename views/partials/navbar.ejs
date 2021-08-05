@@ -43,7 +43,7 @@
         <%if(data.user.auth){%>
         <li class="nav-item"></li>
           <row>
-            <a class="nav-link ps-5" style="padding-right: 0px; padding-bottom: 0px; margin-bottom: 0px;" href="https://stg-account.samsung.com/accounts/v1/STWS/signOutGate?client_id=3694457r8f&state=CUSTOM_TOKEN&signOutURL=http://localhost:3000/logout/complete">logout</a>
+            <a class="nav-link ps-5" style="padding-right: 0px; padding-bottom: 0px; margin-bottom: 0px;" href="https://stg-account.samsung.com/accounts/v1/STWS/signOutGate?client_id=3694457r8f&state=CUSTOM_TOKEN&signOutURL=http://54.202.165.130/logout/complete">logout</a>
             <small class="pe-2" id="welcome_user" style="font-size:smaller; padding-top: 0px; padding-left: 0px;">Welcome <%=data.user.profile.name %> !</small>
           </row>
           
@@ -54,7 +54,7 @@
           
             <li class="nav-item">
               <a class="nav-link"
-                href="https://stg-account.samsung.com/accounts/v1/STWS/signInGate?response_type=code&locale=en&countryCode=US&client_id=3694457r8f&redirect_uri=http://localhost:3000/sa/signin/callback&state=CUSTOM_TOKEN&goBackURL=http://localhost:3000">log In</a>
+                href="https://stg-account.samsung.com/accounts/v1/STWS/signInGate?response_type=code&locale=en&countryCode=US&client_id=3694457r8f&redirect_uri=http://54.202.165.130/sa/signin/callback&state=CUSTOM_TOKEN&goBackURL=http://54.202.165.130/">log In</a>
             </li>        
         <%}%>
       </ul>
@@ -78,7 +78,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">
-        <a href="https://stg-account.samsung.com/accounts/v1/STWS/signInGate?response_type=code&locale=en&countryCode=US&client_id=3694457r8f&redirect_uri=http://localhost:3000/sa/signin/callback&state=CUSTOM_TOKEN&goBackURL=http://localhost:3000" id="loginText">log In</a>
+        <a href="https://stg-account.samsung.com/accounts/v1/STWS/signInGate?response_type=code&locale=en&countryCode=US&client_id=3694457r8f&redirect_uri=http://54.202.165.130/sa/signin/callback&state=CUSTOM_TOKEN&goBackURL=http://54.202.165.130/" id="loginText">log In</a>
         </button>
       </div>
     </div>
