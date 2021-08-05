@@ -341,7 +341,7 @@ router.delete('/posts/:id', (req, res) => {
                 throw err
             }
             conn.release();
-            res.redirect('/posts');
+            res.redirect('/posts/1');
         })
     })
 
