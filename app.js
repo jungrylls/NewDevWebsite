@@ -60,6 +60,6 @@ app.use('/', logoutRoute);
 app.use('/', commentRoute);
 
 //Listen to the port 3306
-app.listen(process.env.PORT, () => {
+app.listen(3000, () => {
     console.log("listening to 3000 !");
 })
