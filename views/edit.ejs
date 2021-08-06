@@ -15,6 +15,7 @@
 
     $('#edit_content').on('change', function(){
         var editedText = $('#edit_content').text();
+        console.log(editedText)
         if(editedText.includes("<script>")){
             console.log("cant script !")
             $("#editSubmitBtn").addClass('disabled');
