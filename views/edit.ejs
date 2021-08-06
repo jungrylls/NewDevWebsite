@@ -18,10 +18,10 @@
         console.log(editedText)
         if(editedText.includes("<script>")){
             console.log("cant script !")
-            $("#editSubmitBtn").addClass('disabled');
+            $("#editSubmitBtn").attr('disabled',true);
         }else{
             console.log("it is fine.")
-            $("#editSubmitBtn").removeClass('disabled');
+            $("#editSubmitBtn").attr('disabled',false);
         }
     })
     
