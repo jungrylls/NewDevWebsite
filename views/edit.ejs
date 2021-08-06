@@ -14,7 +14,7 @@
     
 
     $('#edit_content').on('input', function(){
-        var editedText = $('#edit_content').text();
+        var editedText = $('#edit_content').value;
         console.log(editedText)
         if(editedText.includes("<script>")){
             console.log("cant script !")
