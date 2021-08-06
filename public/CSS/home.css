@@ -7,9 +7,31 @@
     background-image: url(https://images.unsplash.com/photo-1554490828-442467b562dd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80);
   } 
 
-  body{
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-image: url(https://images.pexels.com/photos/313782/pexels-photo-313782.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+.quote{
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   }
+
+  .quote::before{
+    content:"";
+    background-image: url("https://images3.alphacoders.com/101/thumb-1920-1011291.jpg");
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.70;
+  }
+
+ h1{
+    position: relative;
+    color: #ffffff;
+    font-size: 14rem;
+    line-height: 0.9;
+    text-align: center;
+ }
