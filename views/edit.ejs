@@ -13,7 +13,7 @@
 <script>
     
 
-    $('#edit_content').on('change', function(){
+    $('#edit_content').on('text-change', function(){
         var editedText = $('#edit_content').text();
         console.log(editedText)
         if(editedText.includes("<script>")){
