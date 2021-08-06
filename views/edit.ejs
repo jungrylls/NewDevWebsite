@@ -11,9 +11,10 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-    var editedText = $('#edit_content').text();
+    
 
     $('#edit_content').on('change', function(){
+        var editedText = $('#edit_content').text();
         if(editedText.includes("<script>")){
             console.log("cant script !")
             $("#editSubmitBtn").addClass('disabled');
