@@ -31,7 +31,7 @@
  h1{
     position: relative;
     color: #ffffff;
-    font-size: 16rem;
+    font-size: 16rem !important;
     line-height: 0.9;
     text-align: center;
  }
