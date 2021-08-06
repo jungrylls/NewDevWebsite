@@ -17,7 +17,7 @@
         var editedText = $('#edit_content').val();
         console.log(editedText)
         if(editedText.includes("<script>")){
-            console.log("cant script !")
+            alert("Can not use the script tag. Thank you.")
             $("#editSubmitBtn").attr('disabled',true);
         }else{
             console.log("it is fine.")
