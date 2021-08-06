@@ -7,17 +7,18 @@
         <%-data.rows[0].post%>
     </textarea>
     <button id="editSubmitBtn">Submit</button>
-
 </form>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     var editedText = $('#edit_content').text();
 
-    $('#editedText').on('change', function(){
+    $('#edit_content').on('change', function(){
         if(editedText.includes("<script>")){
+            console.log("cant script !")
             $("#editSubmitBtn").addClass('disabled');
         }else{
+            console.log("it is fine.")
             $("#editSubmitBtn").removeClass('disabled');
         }
     })
